@@ -1,0 +1,98 @@
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX dc11: <http://purl.org/dc/elements/1.1/> 
+PREFIX cc: <http://creativecommons.org/ns#> 
+PREFIX rdanl: <http://data.bibliotheken.nl/rdanl#>
+
+CONSTRUCT {
+  	# describe the ontology:
+    rdanl: a owl:Ontology .
+    rdanl: dc11:title "RDANL, een toepassingsprofiel van RDA."@nl .
+  	rdanl: dc11:description "RDANL, een toepassingsprofiel van RDA, ontwikkeld door KB | Nationale Bibliotheek."@nl .
+    rdanl: <http://purl.org/vocab/vann/preferredNamespacePrefix> "rdanl" .
+  	rdanl: dc11:rights "Gebaseerd op werk onder copyright van de American Library Association, Canadian Federation of Library Associations, en CILIP: Chartered Institute of Library and Information Professionals"@nl .
+  	rdanl: cc:licence <https://creativecommons.org/licenses/by/4.0/> .
+  	rdanl: owl:versionInfo "v0.9.6" .
+  	rdanl: dc11:modified "2023-09-07"^^xsd:date .
+   
+  	# all the RDA properties here as RDANL:
+ 	?rdanl owl:sameAs ?rda .  # indeed, we use owl:sameAs now 
+  	?rdanl rdfs:isDefinedBy rdanl: .
+    ?rdanl ?predicate ?object .  
+  
+  	# RDANL custom properties:
+  	rdanl:relatedPersonaOfWork a rdf:Property .
+    rdanl:relatedPersonaOfWork rdfs:isDefinedBy rdanl: .
+   	rdanl:relatedPersonaOfWork rdfs:subPropertyOf rdanl:relatedNomenOfWork .
+    rdanl:relatedPersonaOfWork rdfs:comment "Dit kenmerk wordt gebruikt om een Work te verbinden met de Nomen van een Agent (typisch een Person) die als de centrale Nomen in een Nomen-cluster staat voor de met dit werk geassocieerde Persona."@nl .
+  	rdanl:relatedPersonaOfWork skos:scopeNote "Gebruik dit kenmerk in plaats van rdanl:relatedNomenOfWork als de Nomen de centrale Nomen in een Persona -Nomencluster is, conform het toepassingsprofiel."@nl .
+  	rdanl:relatedPersonaOfWork rdfs:seeAlso <https://netwerk-digitaal-erfgoed.github.io/rdanl/> .
+}
+WHERE { GRAPH <http://rdaregistry.info/Elements/v5.0.12/> {
+ 
+    # the RDA elements RDANL provides:
+   	VALUES (?element) { 
+    	("C10001") ("C10002") ("C10003") ("C10004") ("C10005") ("C10006") ("C10007") ("C10008") ("C10009") ("C10010") ("C10011") ("C10012") ("C10013")  
+      	("P00001") ("P00018") 
+		("P10002") ("P10004") ("P10007") ("P10008") ("P10013") ("P10014") ("P10015") ("P10041") ("P10046") ("P10048") ("P10049") ("P10050") ("P10051") ("P10052")
+      	("P10053") ("P10054") ("P10055") ("P10056") ("P10057") ("P10058") ("P10058") ("P10059") ("P10060") ("P10061") ("P10062") ("P10063") ("P10064") ("P10065")
+      	("P10066") ("P10067") ("P10068") ("P10069") ("P10069") ("P10070") ("P10071") ("P10072") ("P10073") ("P10074") ("P10075") ("P10078") ("P10086") ("P10088")
+      	("P10198") ("P10200") ("P10202") ("P10203") ("P10204") ("P10205") ("P10219") ("P10223") ("P10253") ("P10254") ("P10255") ("P10256") ("P10287") ("P10293")
+      	("P10297") ("P10298") ("P10299") ("P10304") ("P10305") ("P10306") ("P10307") ("P10311") ("P10311") ("P10312") ("P10314") ("P10315") ("P10318") ("P10319")
+     	("P10328") ("P10330") ("P10331") ("P10332") ("P10338") ("P10346") ("P10353") ("P10365") ("P10393") ("P10407") ("P10412") ("P10416") ("P10418") ("P10429")
+      	("P10430") ("P10431") ("P10433") ("P10435") ("P10436") ("P10437") ("P10438") ("P10441") ("P10442") ("P10443") ("P10444") ("P10445") ("P10446") ("P10447") 
+      	("P10451") ("P10454") ("P10455") ("P10456") ("P10458") ("P10459") ("P10484") ("P10506") ("P10516") ("P10527") ("P10529") ("P10530") ("P10531") ("P10535")
+      	("P10536") ("P10538") ("P10539") ("P10540") ("P10545") ("P10548") ("P10550") ("P10551") 
+		("P20001") ("P20002") ("P20006") ("P20011") ("P20012") ("P20013") ("P20014") ("P20015") ("P20016") ("P20017") ("P20018") ("P20019") ("P20020") ("P20021")
+      	("P20022") ("P20023") ("P20024") ("P20025") ("P20028") ("P20029") ("P20031") ("P20032") ("P20033") ("P20034") ("P20035") ("P20036") ("P20037") ("P20038")
+      	("P20039") ("P20040") ("P20047") ("P20049") ("P20050") ("P20052") ("P20053") ("P20054") ("P20055") ("P20056") ("P20058") ("P20059") ("P20069") ("P20070")
+      	("P20071") ("P20141") ("P20171") ("P20205") ("P20214") ("P20231") ("P20257") ("P20258") ("P20259") ("P20276") ("P20277") ("P20279") ("P20280") ("P20283")
+      	("P20284") ("P20285") ("P20286") ("P20287") ("P20289") ("P20292") ("P20293") ("P20294") ("P20295") ("P20296") ("P20297") ("P20301") ("P20310") ("P20312")
+      	("P20313") ("P20314") ("P20315") ("P20322") ("P20325") ("P20327") ("P20328") ("P20329") ("P20330") ("P20331") ("P20338") ("P20340") ("P20342") ("P20343")
+      	("P20346") ("P20347") ("P20350") ("P20351") ("P20352") ("P20356") ("P20365") ("P20366") ("P20367") ("P20369") ("P20376") ("P20377") ("P20378") ("P20379") 
+      	("P20380") ("P20382") ("P20383") ("P20384") ("P20389") ("P20394") ("P20456") ("P20458") ("P20464") ("P20469") ("P20484") ("P20485") ("P20490") ("P20500")
+      	("P20507") 
+		("P30001") ("P30002") ("P30003") ("P30004") ("P30007") ("P30011") ("P30018") ("P30048") ("P30067") ("P30068") ("P30069") ("P30070") ("P30071") ("P30072")
+      	("P30073") ("P30074") ("P30075") ("P30076") ("P30077") ("P30078") ("P30080") ("P30081") ("P30082") ("P30083") ("P30087") ("P30088") ("P30096") ("P30103")
+      	("P30105") ("P30107") ("P30109") ("P30111") ("P30118") ("P30121") ("P30128") ("P30132") ("P30133") ("P30133") ("P30134") ("P30135") ("P30137") ("P30139")
+      	("P30156") ("P30160") ("P30165") ("P30169") ("P30175") ("P30176") ("P30182") ("P30183") ("P30215") ("P30264") ("P30267") ("P30270") ("P30271") ("P30276")
+      	("P30280") ("P30294") ("P30295") ("P30309") ("P30311") ("P30312") ("P30315") ("P30316") ("P30321") ("P30326") ("P30327") ("P30328") ("P30328") ("P30329")
+      	("P30331") ("P30332") ("P30333") ("P30335") ("P30336") ("P30343") ("P30344") ("P30349") ("P30350") ("P30354") ("P30356") ("P30357") ("P30358") ("P30361")
+      	("P30362") ("P30363") ("P30394") ("P30401") ("P30402") ("P30405") ("P30407") ("P30412") ("P30416") ("P30419") ("P30420") ("P30421") ("P30452") ("P30453")
+      	("P30454") ("P30456") 
+		("P40001") ("P40004") ("P40005") ("P40006") ("P40007") ("P40008") ("P40012") ("P40013") ("P40014") ("P40015") ("P40017") ("P40018") ("P40019") ("P40020")
+      	("P40021") ("P40022") ("P40024") ("P40025") ("P40028") ("P40046") ("P40048") ("P40049") ("P40068") ("P40072") ("P40075") ("P40093") ("P40096") ("P40098")
+      	("P40099") ("P40102") ("P40105") ("P40112") ("P40131") ("P40136") ("P40137") ("P40162") 
+      	("P50094") ("P50097") ("P50103") ("P50104") ("P50111") ("P50113") ("P50115") ("P50117") ("P50120") ("P50121") ("P50291") ("P50292") ("P50377") ("P50385")
+        ("P50411") ("P50412") ("P50428") ("P50429") ("P50541") 
+		("P70001") ("P70032") 
+		("P80066") ("P80068") ("P80070") ("P80112") ("P80113") ("P80161") 
+    }
+    
+    # restrict to these predicates (in addition to owl:sameAs) :
+    VALUES (?predicate) { (rdf:type) (rdfs:label) (rdfs:subClassOf) (rdfs:subPropertyOf) (skos:definition) (skos:scopeNote) (skos:note)}
+   
+    # the languages for strings in RDANL:
+    VALUES (?include_language) { ("nl") ("en")}
+    
+    # these are used the create the RDANL IRIs:
+    VALUES (?lexical_suffix) { (".en") }
+    VALUES (?rdanl_base) { ("http://data.bibliotheken.nl/rdanl#") }
+    
+    # the core selector:
+    ?rda ?predicate ?object .
+    
+    # only process ?element values:
+    FILTER(STRENDS(STR(?rda), ?element))
+    
+    # literals should be in ?include_language:
+    FILTER (!isLiteral(?object) || LANG(?object) = ?include_language  )
+    
+    # construct rdanl IRI using ?lexical_alias and ?lexical_suffix:
+    ?rda <http://metadataregistry.org/uri/profile/regap/lexicalAlias> ?lexical_alias .
+    BIND (IRI(CONCAT(?rdanl_base, REPLACE(REPLACE(STR(?lexical_alias), "^.*/([^/]*)$", "$1"), CONCAT("\\", ?lexical_suffix, "$"), "", "i"))) as ?rdanl)
+  }
+}
