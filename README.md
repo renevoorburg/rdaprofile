@@ -22,6 +22,6 @@ As provided, the SPARQL will run on any triple store that has loaded [official R
 
 In this form (specifically mind the n*amed graph* that is used in the **WHERE** clause), it will run on [https://data.digitopia.nl/yasgui/](https://data.digitopia.nl/yasgui/) .
 
-### PS...
+### ps...
 The default Virtuoso SPARQL query editor (tested in Virtuoso 07.29.3237) will not runs the query since it is too long for a GET and should be POSTed, which it doesn't. It will run in the query editor available in the Virtuoso Conductor, or indeed in [Yasgui](https://data.digitopia.nl/yasgui/).
 
