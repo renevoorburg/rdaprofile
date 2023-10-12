@@ -5,7 +5,7 @@ CONSTRUCT {
 }
 WHERE {
 	?s ?rda ?o .
-    { SELECT ?n ?p WHERE { GRAPH <http://data.bibliotheken.nl/rdanl#> {
+    { SELECT ?rdanl ?rda WHERE { GRAPH <http://data.bibliotheken.nl/rdanl#> {
    		?rdanl owl:sameAs ?rda .
     }}
 }} 
