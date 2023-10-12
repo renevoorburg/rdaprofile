@@ -1,0 +1,11 @@
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+CONSTRUCT {
+	?s ?rdanl ?o .  
+}
+WHERE {
+	?s ?rda ?o .
+    { SELECT ?n ?p WHERE { GRAPH <http://data.bibliotheken.nl/rdanl#> {
+   		?rdanl owl:sameAs ?rda .
+    }}
+  }} 
