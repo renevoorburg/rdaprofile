@@ -8,4 +8,4 @@ WHERE {
     { SELECT ?n ?p WHERE { GRAPH <http://data.bibliotheken.nl/rdanl#> {
    		?rdanl owl:sameAs ?rda .
     }}
-  }} 
+}} 
